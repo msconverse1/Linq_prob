@@ -10,11 +10,24 @@ namespace msc_LINQ
     {
         static void Main(string[] args)
         {
-            List<string> words = new List<string>() { "the", "bike", "this", "it", "tenth", "mathematics" };
-            FindSubString(words);
-            Console.ReadLine();
-            Console.Clear();
-            ReturnCopyListMinusDups();
+            //List<string> words = new List<string>() { "the", "bike", "this", "it", "tenth", "mathematics" };
+
+            //FindSubString(words);
+            //Console.ReadLine();
+            //Console.Clear();
+            //List<string> names = new List<string>() { "Mike", "Brad", "Nevin", "Ian", "Mike" };
+            //ReturnCopyListMinusDups(names);
+            //Console.ReadLine();
+            List<string> classGrades = new List<string>()
+            {
+            "80,100,92,89,65",
+            "93,81,78,84,69",
+            "73,88,83,99,64",
+            "98,100,66,74,55"
+            };
+            //Console.Clear();
+            AverageGradeFromList(classGrades);
+            Console.WriteLine("Press Any key to Exit");
             Console.ReadLine();
         }
        static void FindSubString(List<string> words)
@@ -27,15 +40,26 @@ namespace msc_LINQ
                 Console.WriteLine(item);
             }
         }
-       static void ReturnCopyListMinusDups()
+       static void ReturnCopyListMinusDups(List<string> items)
         {
-            List<string> names = new List<string>() { "Mike", "Brad", "Nevin", "Ian", "Mike" };
-            var copyList = names.Distinct();
+            
+            var copyList = items.Distinct();
             foreach (var item in copyList)
             {
                 Console.WriteLine(item);
             }
             
+        }
+        static void AverageGradeFromList(List<string> classGrades)
+        {
+
+            List<double> vs = new List<double>();
+            foreach (var item in classGrades)
+            {
+               var intarray = item.Split(',').Select(x => Convert.ToInt32(x)).OrderBy(x=>x).Skip(1).Average();
+                vs.Add(intarray);
+            }
+            Console.WriteLine(vs.Average());
         }
     }
 
